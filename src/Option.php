@@ -41,7 +41,7 @@ class Option
     public static function getEntry()
     {
         return Setting::firstOrCreate([
-            'key' => 'ggg3/nguonc-crawler.options',
+            'key' => 'haiau009/kkphim-crawler.options',
         ], [
             'name' => 'Options',
             'field' => json_encode(['name' => 'value', 'type', 'hidden']),
