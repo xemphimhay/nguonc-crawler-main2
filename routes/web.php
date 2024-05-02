@@ -14,7 +14,7 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace'  => 'Ophim\Crawler\NguoncCrawler\Controllers',
+    'namespace'  => 'Ophim\Crawler\OphimCrawler\Controllers',
 ], function () {
     Route::get('/plugin/ophim-crawler', 'CrawlController@showCrawlPage');
     Route::get('/plugin/ophim-crawler/options', 'CrawlerSettingController@editOptions');

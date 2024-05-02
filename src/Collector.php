@@ -1,6 +1,6 @@
 <?php
 
-namespace Ophim\Crawler\NguoncCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ophim\Crawler\NguoncCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
 use Ophim\Core\Models\Movie;
 use Illuminate\Support\Str;
@@ -10,7 +10,7 @@ use Ophim\Core\Models\Director;
 use Ophim\Core\Models\Episode;
 use Ophim\Core\Models\Region;
 use Ophim\Core\Models\Tag;
-use Ophim\Crawler\NguoncCrawler\Contracts\BaseCrawler;
+use Ophim\Crawler\OphimCrawler\Contracts\BaseCrawler;
 
 class Crawler extends BaseCrawler
 {

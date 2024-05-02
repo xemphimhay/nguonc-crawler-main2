@@ -1,13 +1,13 @@
 <?php
 
-namespace Ophim\Crawler\NguoncCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as SP;
-use Ophim\Crawler\NguoncCrawler\Console\CrawlerScheduleCommand;
-use Ophim\Crawler\NguoncCrawler\Option;
+use Ophim\Crawler\OphimCrawler\Console\CrawlerScheduleCommand;
+use Ophim\Crawler\OphimCrawler\Option;
 
-class NguoncCrawlerServiceProvider extends SP
+class OphimCrawlerServiceProvider extends SP
 {
     /**
      * Get the policies defined on the provider.
@@ -23,20 +23,20 @@ class NguoncCrawlerServiceProvider extends SP
     {
 
         config(['plugins' => array_merge(config('plugins', []), [
-            'ggg3/nguonc-crawler' =>
+            'ggg3/nguon-crawler' =>
             [
-                'name' => 'Nguonc Crawler',
-                'package_name' => 'ggg3/nguonc-crawler',
+                'name' => 'Ophim Crawler',
+                'package_name' => 'ggg3/nguon-crawler',
                 'icon' => 'la la-hand-grab-o',
                 'entries' => [
-                    ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/nguonc-crawler')],
-                    ['name' => 'Option', 'icon' => 'la la-cog', 'url' => backpack_url('/plugin/nguonc-crawler/options')],
+                    ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/nguon-crawler')],
+                    ['name' => 'Option', 'icon' => 'la la-cog', 'url' => backpack_url('/plugin/nguon-crawler/options')],
                 ],
             ]
         ])]);
 
         config(['logging.channels' => array_merge(config('logging.channels', []), [
-            'nguonc-crawler' => [
+            'ophim-crawler' => [
                 'driver' => 'daily',
                 'path' => storage_path('logs/hacoidev/ophim-crawler.log'),
                 'level' => env('LOG_LEVEL', 'debug'),
@@ -46,8 +46,8 @@ class NguoncCrawlerServiceProvider extends SP
 
         config(['ophim.updaters' => array_merge(config('ophim.updaters', []), [
             [
-                'name' => 'Nguonc Crawler',
-                'handler' => 'Ophim\Crawler\NguoncCrawler\Crawler'
+                'name' => 'Ophim Crawler',
+                'handler' => 'Ophim\Crawler\OphimCrawler\Crawler'
             ]
         ])]);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ophim\Crawler\NguoncCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
 use Backpack\Settings\app\Models\Setting;
 use Illuminate\Support\Facades\Cache;
@@ -41,7 +41,7 @@ class Option
     public static function getEntry()
     {
         return Setting::firstOrCreate([
-            'key' => 'hacoidev/ophim-crawler.options',
+            'key' => 'ggg3/nguon-crawler.options',
         ], [
             'name' => 'Options',
             'field' => json_encode(['name' => 'value', 'type', 'hidden']),

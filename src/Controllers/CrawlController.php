@@ -1,18 +1,18 @@
 <?php
 
-namespace Ophim\Crawler\NguoncCrawler\Controllers;
+namespace Ophim\Crawler\OphimCrawler\Controllers;
 
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Ophim\Crawler\NguoncCrawler\Crawler;
+use Ophim\Crawler\OphimCrawler\Crawler;
 use Ophim\Core\Models\Movie;
 
 /**
  * Class CrawlController
- * @package Ophim\Crawler\NguoncCrawler\Controllers
+ * @package Ophim\Crawler\OphimCrawler\Controllers
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class CrawlController extends CrudController
