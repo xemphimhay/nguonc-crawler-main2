@@ -14,12 +14,12 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace'  => 'Ophim\Crawler\OphimCrawler\Controllers',
+    'namespace'  => 'nguonc\Crawler\nguoncCrawler\Controllers',
 ], function () {
-    Route::get('/plugin/ophim-crawler', 'CrawlController@showCrawlPage');
-    Route::get('/plugin/ophim-crawler/options', 'CrawlerSettingController@editOptions');
-    Route::put('/plugin/ophim-crawler/options', 'CrawlerSettingController@updateOptions');
-    Route::get('/plugin/ophim-crawler/fetch', 'CrawlController@fetch');
-    Route::post('/plugin/ophim-crawler/crawl', 'CrawlController@crawl');
-    Route::post('/plugin/ophim-crawler/get-movies', 'CrawlController@getMoviesFromParams');
+    Route::get('/plugin/nguonc-crawler', 'CrawlController@showCrawlPage');
+    Route::get('/plugin/nguonc-crawler/options', 'CrawlerSettingController@editOptions');
+    Route::put('/plugin/nguonc-crawler/options', 'CrawlerSettingController@updateOptions');
+    Route::get('/plugin/nguonc-crawler/fetch', 'CrawlController@fetch');
+    Route::post('/plugin/nguonc-crawler/crawl', 'CrawlController@crawl');
+    Route::post('/plugin/nguonc-crawler/get-movies', 'CrawlController@getMoviesFromParams');
 });
