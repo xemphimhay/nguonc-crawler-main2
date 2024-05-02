@@ -23,14 +23,14 @@ class KKPhimCrawlerServiceProvider extends SP
     {
 
         config(['plugins' => array_merge(config('plugins', []), [
-            'haiau009/kkphim-crawler' =>
+            'ggg3/ophim-crawler' =>
             [
                 'name' => 'KKPhim Crawler',
-                'package_name' => 'haiau009/kkphim-crawler',
+                'package_name' => 'ggg3/ophim-crawler',
                 'icon' => 'la la-hand-grab-o',
                 'entries' => [
-                    ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/kkphim-crawler')],
-                    ['name' => 'Option', 'icon' => 'la la-cog', 'url' => backpack_url('/plugin/kkphim-crawler/options')],
+                    ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/ophim-crawler')],
+                    ['name' => 'Option', 'icon' => 'la la-cog', 'url' => backpack_url('/plugin/ophim-crawler/options')],
                 ],
             ]
         ])]);
@@ -38,7 +38,7 @@ class KKPhimCrawlerServiceProvider extends SP
         config(['logging.channels' => array_merge(config('logging.channels', []), [
             'kkphim-crawler' => [
                 'driver' => 'daily',
-                'path' => storage_path('logs/haiau009/kkphim-crawler.log'),
+                'path' => storage_path('logs/ggg3/ophim-crawler.log'),
                 'level' => env('LOG_LEVEL', 'debug'),
                 'days' => 7,
             ],
