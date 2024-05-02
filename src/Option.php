@@ -1,6 +1,6 @@
 <?php
 
-namespace KKPhim\Crawler\KKPhimCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
 use Backpack\Settings\app\Models\Setting;
 use Illuminate\Support\Facades\Cache;
@@ -28,7 +28,7 @@ class Option
     //     $options[$name] = $value;
 
     //     return Setting::updateOrCreate([
-    //         'key' => 'haiau009/kkphim-crawler.options',
+    //         'key' => 'hacoidev/ophim-crawler.options',
     //     ], [
     //         'name' => 'Options',
     //         'field' => json_encode(['name' => 'value', 'type', 'hidden']),
@@ -41,7 +41,7 @@ class Option
     public static function getEntry()
     {
         return Setting::firstOrCreate([
-            'key' => 'haiau009/kkphim-crawler.options',
+            'key' => 'hacoidev/ophim-crawler.options',
         ], [
             'name' => 'Options',
             'field' => json_encode(['name' => 'value', 'type', 'hidden']),
@@ -55,13 +55,13 @@ class Option
         $categories = [];
         $regions = [];
         try {
-            $categories = Cache::remember('kkphim_categories', 86400, function () {
-                $data = json_decode(file_get_contents(sprintf('%s/the-loai', config('kkphim_crawler.domain', 'https://phimapi.com'))), true) ?? [];
+            $categories = Cache::remember('ophim_categories', 86400, function () {
+                $data = json_decode(file_get_contents(sprintf('%s/the-loai', config('ophim_crawler.domain', 'https://ophim1.com'))), true) ?? [];
                 return collect($data)->pluck('name', 'name')->toArray();
             });
 
-            $regions = Cache::remember('kkphim_regions', 86400, function () {
-                $data = json_decode(file_get_contents(sprintf('%s/quoc-gia', config('kkphim_crawler.domain', 'https://phimapi.com'))), true) ?? [];
+            $regions = Cache::remember('ophim_regions', 86400, function () {
+                $data = json_decode(file_get_contents(sprintf('%s/quoc-gia', config('ophim_crawler.domain', 'https://ophim1.com'))), true) ?? [];
                 return collect($data)->pluck('name', 'name')->toArray();
             });
         } catch (\Throwable $th) {
@@ -100,9 +100,9 @@ class Option
         return [
             'domain' => [
                 'name' => 'domain',
-                'label' => 'API Domain KKPHIM.COM',
+                'label' => 'API Domain',
                 'type' => 'text',
-                'value' => 'https://phimapi.com',
+                'value' => 'https://ophim1.com',
                 'tab' => 'Setting'
             ],
             'download_image' => [

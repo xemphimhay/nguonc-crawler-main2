@@ -3,7 +3,7 @@
 @php
     $defaultBreadcrumbs = [
         trans('backpack::crud.admin') => backpack_url('dashboard'),
-        'Crawler' => backpack_url('plugin/kkphim-crawler'),
+        'Crawler' => backpack_url('plugin/ophim-crawler'),
     ];
 
     $breadcrumbs = $breadcrumbs ?? $defaultBreadcrumbs;
@@ -35,7 +35,7 @@
                                 </select>
                                 <button class="btn btn-sm btn-primary" id="movies-get-handle">Lấy danh sách</button>
                             </div>
-                            <textarea class="form-control" rows="5" name="link">https://phimapi.com/danh-sach/phim-moi-cap-nhat</textarea>
+                            <textarea class="form-control" rows="5" name="link">https://ophim1.com/danh-sach/phim-moi-cap-nhat</textarea>
                             <small><i>Mỗi link cách nhau 1 dòng</i></small>
                         </div>
                         <div class="form-group col-12">
@@ -304,7 +304,7 @@
 
             const fetchApi = async (link, from, to) => {
                 isFetching = true;
-                const response = await fetch("{{ backpack_url('plugin/kkphim-crawler/fetch') }}?" +
+                const response = await fetch("{{ backpack_url('plugin/ophim-crawler/fetch') }}?" +
                     new URLSearchParams({
                         link,
                         from,
@@ -514,7 +514,7 @@
             const excludedRegions = $("[name='excludedRegions[]']").val()
             const excludedType = $("[name='excludedType[]']").val()
             const forceUpdate = ($("[name='force_update']").prop('checked') == true) ? true : false;
-            const response = await fetch("{{ backpack_url('plugin/kkphim-crawler/crawl') }}", {
+            const response = await fetch("{{ backpack_url('plugin/ophim-crawler/crawl') }}", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -544,10 +544,10 @@
         }
 
         $("#movies-get-handle").click(async function() {
-            const apiDomain = "{{ config('kkphim_crawler.domain', 'https://phimapi.com') }}";
+            const apiDomain = "{{ config('ophim_crawler.domain', 'https://ophim1.com') }}";
             let params = $("select[name=movies-get-params]").find(":selected").val();
 
-            const response = await fetch("{{ backpack_url('plugin/kkphim-crawler/get-movies') }}", {
+            const response = await fetch("{{ backpack_url('plugin/ophim-crawler/get-movies') }}", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

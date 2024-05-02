@@ -1,16 +1,16 @@
 <?php
 
-namespace KKPhim\Crawler\KKPhimCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
-use KKPhim\Core\Models\Movie;
+use Ophim\Core\Models\Movie;
 use Illuminate\Support\Str;
-use KKPhim\Core\Models\Actor;
-use KKPhim\Core\Models\Category;
-use KKPhim\Core\Models\Director;
-use KKPhim\Core\Models\Episode;
-use KKPhim\Core\Models\Region;
-use KKPhim\Core\Models\Tag;
-use KKPhim\Crawler\KKPhimCrawler\Contracts\BaseCrawler;
+use Ophim\Core\Models\Actor;
+use Ophim\Core\Models\Category;
+use Ophim\Core\Models\Director;
+use Ophim\Core\Models\Episode;
+use Ophim\Core\Models\Region;
+use Ophim\Core\Models\Tag;
+use Ophim\Crawler\OphimCrawler\Contracts\BaseCrawler;
 
 class Crawler extends BaseCrawler
 {
@@ -141,55 +141,39 @@ class Crawler extends BaseCrawler
     protected function updateEpisodes($movie, $payload)
     {
         if (!in_array('episodes', $this->fields)) return;
+        $flag = 0;
         foreach ($payload['episodes'] as $server) {
             foreach ($server['server_data'] as $episode) {
                 if ($episode['link_m3u8']) {
-					$str_slug = '';
-					if($episode['name'] == 'Full') {
-						$str_slug = 'tap-';
-					}
-                    $curr_episode = $movie->episodes()
-                                        ->where('server', $server['server_name'])
-                                        ->where('name', $episode['name'])
-                                        ->where('type', 'm3u8')
-                                        ->first();
-                    if ($curr_episode) {
-                        $curr_episode->link = $episode['link_m3u8'];
-                        $curr_episode->save();
-                    } else {
-                        $movie->episodes()->create([
-                            'server' => $server['server_name'],
-                            'name' => $episode['name'],
-                            'slug' => $str_slug . Str::slug($episode['name']),
-                            'type' => 'm3u8',
-                            'link' => $episode['link_m3u8'],
-                        ]);
-                    }
+                    Episode::updateOrCreate([
+                        'id' => $movie->episodes[$flag]->id ?? null
+                    ], [
+                        'name' => $episode['name'],
+                        'movie_id' => $movie->id,
+                        'server' => $server['server_name'],
+                        'type' => 'm3u8',
+                        'link' => $episode['link_m3u8'],
+                        'slug' => 'tap-' . Str::slug($episode['name'])
+                    ]);
+                    $flag++;
                 }
                 if ($episode['link_embed']) {
-					$str_slug = '';
-					if($episode['name'] == 'Full') {
-						$str_slug = 'tap-';
-					}
-                    $curr_episode = $movie->episodes()
-                                        ->where('server', $server['server_name'])
-                                        ->where('name', $episode['name'])
-                                        ->where('type', 'embed')
-                                        ->first();
-                    if ($curr_episode) {
-                        $curr_episode->link = $episode['link_embed'];
-                        $curr_episode->save();
-                    } else {
-                        $movie->episodes()->create([
-                            'server' => $server['server_name'],
-                            'name' => $episode['name'],
-                            'slug' => $str_slug . Str::slug($episode['name']),
-                            'type' => 'embed',
-                            'link' => $episode['link_embed'],
-                        ]);
-                    }
+                    Episode::updateOrCreate([
+                        'id' => $movie->episodes[$flag]->id ?? null
+                    ], [
+                        'name' => $episode['name'],
+                        'movie_id' => $movie->id,
+                        'server' => $server['server_name'],
+                        'type' => 'embed',
+                        'link' => $episode['link_embed'],
+                        'slug' => 'tap-' . Str::slug($episode['name'])
+                    ]);
+                    $flag++;
                 }
             }
+        }
+        for ($i=$flag; $i < count($movie->episodes); $i++) {
+            $movie->episodes[$i]->delete();
         }
     }
 }

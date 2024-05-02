@@ -1,13 +1,13 @@
 <?php
 
-namespace KKPhim\Crawler\KKPhimCrawler\Controllers;
+namespace Ophim\Crawler\OphimCrawler\Controllers;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\Settings\app\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
-use KKPhim\Crawler\KKPhimCrawler\Option;
+use Ophim\Crawler\OphimCrawler\Option;
 use Prologue\Alerts\Facades\Alert;
 
 class CrawlerSettingController extends CrudController
@@ -22,7 +22,7 @@ class CrawlerSettingController extends CrudController
     public function setup()
     {
         CRUD::setModel(Setting::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/plugin/kkphim-crawler/options');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/plugin/ophim-crawler/options');
         CRUD::setEntityNameStrings('crawler options', 'crawler options');
     }
 
@@ -59,7 +59,7 @@ class CrawlerSettingController extends CrudController
 
         $this->data['saveAction'] = $this->crud->getSaveAction();
 
-        return view('kkphim-crawler::options', $this->data);
+        return view('ophim-crawler::options', $this->data);
     }
 
     /**

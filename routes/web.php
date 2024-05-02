@@ -14,12 +14,12 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace'  => 'KKPhim\Crawler\KKPhimCrawler\Controllers',
+    'namespace'  => 'Ophim\Crawler\OphimCrawler\Controllers',
 ], function () {
-    Route::get('/plugin/kkphim-crawler', 'CrawlController@showCrawlPage');
-    Route::get('/plugin/kkphim-crawler/options', 'CrawlerSettingController@editOptions');
-    Route::put('/plugin/kkphim-crawler/options', 'CrawlerSettingController@updateOptions');
-    Route::get('/plugin/kkphim-crawler/fetch', 'CrawlController@fetch');
-    Route::post('/plugin/kkphim-crawler/crawl', 'CrawlController@crawl');
-    Route::post('/plugin/kkphim-crawler/get-movies', 'CrawlController@getMoviesFromParams');
+    Route::get('/plugin/ophim-crawler', 'CrawlController@showCrawlPage');
+    Route::get('/plugin/ophim-crawler/options', 'CrawlerSettingController@editOptions');
+    Route::put('/plugin/ophim-crawler/options', 'CrawlerSettingController@updateOptions');
+    Route::get('/plugin/ophim-crawler/fetch', 'CrawlController@fetch');
+    Route::post('/plugin/ophim-crawler/crawl', 'CrawlController@crawl');
+    Route::post('/plugin/ophim-crawler/get-movies', 'CrawlController@getMoviesFromParams');
 });

@@ -1,13 +1,13 @@
 <?php
 
-namespace KKPhim\Crawler\KKPhimCrawler;
+namespace Ophim\Crawler\OphimCrawler;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as SP;
-use KKPhim\Crawler\KKPhimCrawler\Console\CrawlerScheduleCommand;
-use KKPhim\Crawler\KKPhimCrawler\Option;
+use Ophim\Crawler\OphimCrawler\Console\CrawlerScheduleCommand;
+use Ophim\Crawler\OphimCrawler\Option;
 
-class KKPhimCrawlerServiceProvider extends SP
+class OphimCrawlerServiceProvider extends SP
 {
     /**
      * Get the policies defined on the provider.
@@ -23,10 +23,10 @@ class KKPhimCrawlerServiceProvider extends SP
     {
 
         config(['plugins' => array_merge(config('plugins', []), [
-            'ggg3/ophim-crawler' =>
+            'hacoidev/ophim-crawler' =>
             [
-                'name' => 'KKPhim Crawler',
-                'package_name' => 'ggg3/ophim-crawler',
+                'name' => 'Ophim Crawler',
+                'package_name' => 'hacoidev/ophim-crawler',
                 'icon' => 'la la-hand-grab-o',
                 'entries' => [
                     ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/ophim-crawler')],
@@ -36,18 +36,18 @@ class KKPhimCrawlerServiceProvider extends SP
         ])]);
 
         config(['logging.channels' => array_merge(config('logging.channels', []), [
-            'kkphim-crawler' => [
+            'ophim-crawler' => [
                 'driver' => 'daily',
-                'path' => storage_path('logs/ggg3/ophim-crawler.log'),
+                'path' => storage_path('logs/hacoidev/ophim-crawler.log'),
                 'level' => env('LOG_LEVEL', 'debug'),
                 'days' => 7,
             ],
         ])]);
 
-        config(['kkphim.updaters' => array_merge(config('kkphim.updaters', []), [
+        config(['ophim.updaters' => array_merge(config('ophim.updaters', []), [
             [
-                'name' => 'KKPhim Crawler',
-                'handler' => 'KKPhim\Crawler\KKPhimCrawler\Crawler'
+                'name' => 'Ophim Crawler',
+                'handler' => 'Ophim\Crawler\OphimCrawler\Crawler'
             ]
         ])]);
     }
@@ -63,12 +63,12 @@ class KKPhimCrawlerServiceProvider extends SP
         });
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'kkphim-crawler');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ophim-crawler');
     }
 
     protected function loadScheduler()
     {
         $schedule = $this->app->make(Schedule::class);
-        $schedule->command('kkphim:plugins:kkphim-crawler:schedule')->cron(Option::get('crawler_schedule_cron_config', '*/10 * * * *'))->withoutOverlapping();
+        $schedule->command('ophim:plugins:ophim-crawler:schedule')->cron(Option::get('crawler_schedule_cron_config', '*/10 * * * *'))->withoutOverlapping();
     }
 }
