@@ -1,27 +1,27 @@
 {
-    "name": "ggg3/ophim-crawler",
-    "description": "ophim crawler",
+    "name": "ggg3/kkphim-crawler",
+    "description": "kkphim crawler mod",
     "type": "package",
     "require": {
-        "hacoidev/ophim-core": "^1.0.0",
+        "haiau009/kkphim-core": "^1.0.0",
         "intervention/image": "^2.7"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ophim\\Crawler\\OphimCrawler\\": "src/"
+            "KKPhim\\Crawler\\KKPhimCrawler\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "hacoidev",
-            "email": "hacoi.dev@gmail.com"
+            "name": "kkphim",
+            "email": "support@kkphim.com"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [
-                "Ophim\\Crawler\\OphimCrawler\\OphimCrawlerServiceProvider"
+                "KKPhim\\Crawler\\KKPhimCrawler\\KKPhimCrawlerServiceProvider"
             ]
         }
     },
