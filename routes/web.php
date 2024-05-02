@@ -14,12 +14,12 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace'  => 'nguonc\Crawler\nguoncCrawler\Controllers',
+    'namespace'  => 'KKPhim\Crawler\KKPhimCrawler\Controllers',
 ], function () {
-    Route::get('/plugin/nguonc-crawler', 'CrawlController@showCrawlPage');
-    Route::get('/plugin/nguonc-crawler/options', 'CrawlerSettingController@editOptions');
-    Route::put('/plugin/nguonc-crawler/options', 'CrawlerSettingController@updateOptions');
-    Route::get('/plugin/nguonc-crawler/fetch', 'CrawlController@fetch');
-    Route::post('/plugin/nguonc-crawler/crawl', 'CrawlController@crawl');
-    Route::post('/plugin/nguonc-crawler/get-movies', 'CrawlController@getMoviesFromParams');
+    Route::get('/plugin/kkphim-crawler', 'CrawlController@showCrawlPage');
+    Route::get('/plugin/kkphim-crawler/options', 'CrawlerSettingController@editOptions');
+    Route::put('/plugin/kkphim-crawler/options', 'CrawlerSettingController@updateOptions');
+    Route::get('/plugin/kkphim-crawler/fetch', 'CrawlController@fetch');
+    Route::post('/plugin/kkphim-crawler/crawl', 'CrawlController@crawl');
+    Route::post('/plugin/kkphim-crawler/get-movies', 'CrawlController@getMoviesFromParams');
 });

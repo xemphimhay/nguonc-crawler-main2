@@ -1,12 +1,12 @@
 <?php
 
-namespace Ophim\Crawler\OphimCrawler\Console;
+namespace KKPhim\Crawler\KKPhimCrawler\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
-use Ophim\Crawler\OphimCrawler\Crawler;
-use Ophim\Crawler\OphimCrawler\Option;
+use KKPhim\Crawler\KKPhimCrawler\Crawler;
+use KKPhim\Crawler\KKPhimCrawler\Option;
 
 class CrawlerScheduleCommand extends Command
 {
@@ -15,7 +15,7 @@ class CrawlerScheduleCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'ophim:plugins:ophim-crawler:schedule';
+    protected $signature = 'kkphim:plugins:kkphim-crawler:schedule';
 
     /**
      * The console command description.
@@ -32,7 +32,7 @@ class CrawlerScheduleCommand extends Command
      */
     public function __construct()
     {
-        $this->logger = Log::channel('ophim-crawler');
+        $this->logger = Log::channel('kkphim-crawler');
         parent::__construct();
     }
 

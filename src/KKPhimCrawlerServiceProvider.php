@@ -1,13 +1,13 @@
 <?php
 
-namespace nguonc\Crawler\nguoncCrawler;
+namespace KKPhim\Crawler\KKPhimCrawler;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as SP;
-use nguonc\Crawler\nguoncCrawler\Console\CrawlerScheduleCommand;
-use nguonc\Crawler\nguoncCrawler\Option;
+use KKPhim\Crawler\KKPhimCrawler\Console\CrawlerScheduleCommand;
+use KKPhim\Crawler\KKPhimCrawler\Option;
 
-class nguoncCrawlerServiceProvider extends SP
+class KKPhimCrawlerServiceProvider extends SP
 {
     /**
      * Get the policies defined on the provider.
@@ -23,31 +23,31 @@ class nguoncCrawlerServiceProvider extends SP
     {
 
         config(['plugins' => array_merge(config('plugins', []), [
-            'ggg3/nguon-crawler' =>
+            'ggg3/nguonc-crawler' =>
             [
-                'name' => 'nguonc Crawler',
-                'package_name' => 'ggg3/nguon-crawler',
+                'name' => 'KKPhim Crawler',
+                'package_name' => 'ggg3/nguonc-crawler',
                 'icon' => 'la la-hand-grab-o',
                 'entries' => [
-                    ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/nguonc-crawler')],
-                    ['name' => 'Option', 'icon' => 'la la-cog', 'url' => backpack_url('/plugin/nguonc-crawler/options')],
+                    ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/kkphim-crawler')],
+                    ['name' => 'Option', 'icon' => 'la la-cog', 'url' => backpack_url('/plugin/kkphim-crawler/options')],
                 ],
             ]
         ])]);
 
         config(['logging.channels' => array_merge(config('logging.channels', []), [
-            'nguonc-crawler' => [
+            'kkphim-crawler' => [
                 'driver' => 'daily',
-                'path' => storage_path('logs/hacoidev/nguonc-crawler.log'),
+                'path' => storage_path('logs/haiau009/kkphim-crawler.log'),
                 'level' => env('LOG_LEVEL', 'debug'),
                 'days' => 7,
             ],
         ])]);
 
-        config(['nguonc.updaters' => array_merge(config('nguonc.updaters', []), [
+        config(['kkphim.updaters' => array_merge(config('kkphim.updaters', []), [
             [
-                'name' => 'nguonc Crawler',
-                'handler' => 'nguonc\Crawler\nguoncCrawler\Crawler'
+                'name' => 'KKPhim Crawler',
+                'handler' => 'KKPhim\Crawler\KKPhimCrawler\Crawler'
             ]
         ])]);
     }
@@ -63,12 +63,12 @@ class nguoncCrawlerServiceProvider extends SP
         });
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nguonc-crawler');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'kkphim-crawler');
     }
 
     protected function loadScheduler()
     {
         $schedule = $this->app->make(Schedule::class);
-        $schedule->command('nguonc:plugins:nguonc-crawler:schedule')->cron(Option::get('crawler_schedule_cron_config', '*/10 * * * *'))->withoutOverlapping();
+        $schedule->command('kkphim:plugins:kkphim-crawler:schedule')->cron(Option::get('crawler_schedule_cron_config', '*/10 * * * *'))->withoutOverlapping();
     }
 }
