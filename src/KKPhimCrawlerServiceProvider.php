@@ -23,10 +23,10 @@ class KKPhimCrawlerServiceProvider extends SP
     {
 
         config(['plugins' => array_merge(config('plugins', []), [
-            'ggg3/nguonc-crawler' =>
+            'haiau009/kkphim-crawler' =>
             [
                 'name' => 'KKPhim Crawler',
-                'package_name' => 'ggg3/nguonc-crawler',
+                'package_name' => 'haiau009/kkphim-crawler',
                 'icon' => 'la la-hand-grab-o',
                 'entries' => [
                     ['name' => 'Crawler', 'icon' => 'la la-hand-grab-o', 'url' => backpack_url('/plugin/kkphim-crawler')],
